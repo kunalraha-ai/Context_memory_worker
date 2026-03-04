@@ -1,0 +1,33 @@
+# ── Never copy these into the image ───────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Local LanceDB data (mounted as a volume at runtime instead)
+hive_memory/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Docs / tests (not needed in the image)
+*.md
+*.txt
+!requirements.txt

@@ -1,0 +1,42 @@
+# ╔══════════════════════════════════════════════════════════════════════════════╗
+# ║  Aden Hive — Docker Compose                                                 ║
+# ║  Spins up the Context Memory Worker.                                        ║
+# ║                                                                             ║
+# ║  NOTE: Ollama must be running on the HOST machine (ollama serve).           ║
+# ║        The worker reaches it via host.docker.internal:11434.                ║
+# ╚══════════════════════════════════════════════════════════════════════════════╝
+
+services:
+  memory_worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    image: aden-hive/memory-worker:latest
+
+    container_name: hive_memory_worker
+
+    restart: unless-stopped
+
+    environment:
+      # Point to Ollama on the host machine.
+      # On Linux, replace with your host's LAN IP if host.docker.internal
+      # is not available (it is automatic on Windows & macOS).
+      OLLAMA_BASE_URL: "http://host.docker.internal:11434"
+      PYTHONUNBUFFERED: "1"
+
+    volumes:
+      # Named volume → LanceDB data persists across container rebuilds
+      - hive_memory:/app/hive_memory
+
+    # Needed on Linux so host.docker.internal resolves correctly
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+    # Expose a port only if you later add an HTTP API layer (FastAPI etc.)
+    # ports:
+    #   - "8000:8000"
+
+volumes:
+  hive_memory:
+    driver: local
