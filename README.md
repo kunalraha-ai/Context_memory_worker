@@ -1,6 +1,6 @@
-# 🐝 Aden Hive — Context Memory Worker
+# 🐝 Hive — Context Memory Worker
 
-A **Worker Bee** node for the Aden Hive autonomous agent framework. Provides persistent long-term vector memory to the **Queen Bee** orchestrator using a fully local stack — no cloud, no API keys, no C++ compiler required.
+A **Worker Bee** node for the Hive autonomous agent framework. Provides persistent long-term vector memory to the **Queen Bee** orchestrator using a fully local stack — no cloud, no API keys, no C++ compiler required.
 
 ---
 
